@@ -1,5 +1,5 @@
 [project]
-name = "maimai-prober"
+name = "otoge-service"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -24,7 +24,7 @@ dependencies = [
 ]
 
 [project.scripts]
-maimai-prober = "maimai_prober.entrypoint:main"
+otoge-service = "otoge_service.entrypoint:main"
 
 [build-system]
 requires = ["uv_build>=0.8.22,<0.9.0"]

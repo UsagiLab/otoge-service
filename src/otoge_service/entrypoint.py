@@ -11,9 +11,9 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 
-from maimai_prober import sessions
-from maimai_prober.exceptions import LeporidException
-from maimai_prober.settings import get_settings
+from otoge_service import sessions
+from otoge_service.exceptions import LeporidException
+from otoge_service.settings import get_settings
 
 settings = get_settings()
 
@@ -58,7 +58,7 @@ async def init_lifespan(asgi_app: FastAPI):
 
 
 def init_routes(asgi_app: FastAPI) -> None:
-    from maimai_prober.routes import router  # noqa: F401
+    from otoge_service.routes import router  # noqa: F401
 
     @asgi_app.get("/", include_in_schema=False)
     async def root():
@@ -164,7 +164,7 @@ asgi_app = init_api()
 
 
 def main():
-    uvicorn.run("maimai_prober.entrypoint:asgi_app", port=settings.bind_port, host=settings.bind_host)
+    uvicorn.run("otoge_service.entrypoint:asgi_app", port=settings.bind_port, host=settings.bind_host)
 
 
 if __name__ == "__main__":

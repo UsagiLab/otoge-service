@@ -102,3 +102,74 @@ class Developer(SQLModel, table=True):
     description: str | None = Field(default=None)
     enabled: bool = Field(default=True)
     created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+# Maimai Assets
+
+
+class MaimaiCharacter(SQLModel, table=True):
+    __tablename__ = "tbl_maimai_characters"  # type: ignore
+
+    id: int = Field(primary_key=True, description="角色ID")
+    name: str = Field(description="角色名")
+    version: str = Field(description="版本")
+
+
+class OngekiCard(SQLModel, table=True):
+    __tablename__ = "tbl_ongeki_cards"  # type: ignore
+
+    id: int = Field(primary_key=True, description="卡片ID")
+    name: str = Field(description="卡片名")
+    character_id: int = Field(default=1000, description="角色ID")
+    character_name: str = Field(description="角色名")
+    rarity: str = Field(description="稀有度")
+    attribute: str = Field(description="属性")
+    description: str | None = Field(default=None, description="称号")
+    representative: str = Field(default=None, description="代表")
+    grade_id: int = Field(default=2, description="年级ID")
+    grade: str | None = Field(default=None, description="年级")
+    group_id: int = Field(default=1, description="组合ID")
+    group: str | None = Field(default=None, description="组合")
+    skill_id: int = Field(default=100000, description="技能ID")
+    skill: str = Field(description="技能")
+    super_skill_id: int = Field(default=100041, description="超解花技能ID")
+    super_skill: str = Field(description="超解花技能")
+    version: str = Field(description="版本")
+    version_number: str = Field(description="卡面数字")
+    copyright: str | None = Field(default=None, description="版权名称")
+    model_name: str | None = Field(default=None, description="3D模型名称")
+    attack_power_0: int = Field(description="0星攻击力")
+    attack_power_1: int = Field(description="1星攻击力")
+    attack_power_2: int = Field(description="2星攻击力")
+    attack_power_3: int = Field(description="3星攻击力")
+    attack_power_4: int = Field(description="4星攻击力")
+    attack_power_5: int = Field(description="5星攻击力")
+    attack_power_7: int | None = Field(default=None, description="7星攻击力")
+    attack_power_9: int | None = Field(default=None, description="9星攻击力")
+    attack_power_11: int | None = Field(default=None, description="11星攻击力")
+    attack_power_max: int = Field(description="MAX攻击力")
+
+
+class OngekiSkill(SQLModel, table=True):
+    __tablename__ = "tbl_ongeki_skills"  # type: ignore
+
+    id: int = Field(primary_key=True, description="技能ID")
+    type: str = Field(description="技能类型")
+    details: str = Field(description="技能详细")
+
+
+## Chunithm Models
+
+
+class ChunithmCharacter(SQLModel, table=True):
+    __tablename__ = "tbl_chunithm_characters"  # type: ignore
+
+    id: int = Field(primary_key=True, description="角色ID")
+    name: str = Field(description="角色名")
+    rarity: int = Field(description="稀有度")
+    tag_type: int = Field(description="标签种类")
+    miss: int = Field(description="miss值")
+    combo: int = Field(description="combo值")
+    chain: int = Field(description="chain值")
+    skill_name: str = Field(description="技能名")
+    skill_description: str = Field(description="技能描述")

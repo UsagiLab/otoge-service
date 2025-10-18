@@ -10,8 +10,8 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from sqlmodel import SQLModel, select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from maimai_prober.models import Developer
-from maimai_prober.settings import get_settings
+from otoge_service.models import Developer
+from otoge_service.settings import get_settings
 
 settings = get_settings()
 
@@ -40,7 +40,7 @@ async def async_session_ctx():
 
 
 async def init_db():
-    import maimai_prober.models  # noqa: F401
+    import otoge_service.models  # noqa: F401
 
     async with async_engine.begin() as conn:
         await conn.run_sync(SQLModel.metadata.create_all)

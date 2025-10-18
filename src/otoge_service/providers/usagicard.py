@@ -9,9 +9,9 @@ from maimai_py import IScoreProvider, IScoreUpdateProvider, MaimaiClient, Player
 from maimai_py.models import Score as MpyScore
 from sqlmodel import col, select
 
-from maimai_prober.exceptions import LeporidException
-from maimai_prober.models import Score
-from maimai_prober.sessions import async_session_ctx
+from otoge_service.exceptions import LeporidException
+from otoge_service.models import Score
+from otoge_service.sessions import async_session_ctx
 
 T = TypeVar("T")
 score_update_lock = defaultdict(asyncio.Lock)
