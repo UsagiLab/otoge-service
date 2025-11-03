@@ -331,7 +331,25 @@ wheels = [
 ]
 
 [[package]]
-name = "maimai-prober"
+name = "maimai-py"
+version = "1.3.7rc2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiocache" },
+    { name = "cryptography" },
+    { name = "httpcore" },
+    { name = "httpx" },
+    { name = "lxml" },
+    { name = "maimai-ffi" },
+    { name = "tenacity" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/42/67/c9e24738b07135e17ae8947649b425a31ba00878e472bbe1261001a6906c/maimai_py-1.3.7rc2.tar.gz", hash = "sha256:c1b45a8100834a89786bbe628a9a10bb7cdba405352bc67643a0baeab0641ba1", size = 301529, upload-time = "2025-10-10T14:19:21.968Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/5a/a2631264ecdda457f8659d6f563eb99969745cdc49916df2fde3fdcf7591/maimai_py-1.3.7rc2-py3-none-any.whl", hash = "sha256:f5477895603fb223afe3a077fbdae9a52afe1ee02391f0e9c4e34504a1cb3217", size = 314269, upload-time = "2025-10-10T14:19:20.53Z" },
+]
+
+[[package]]
+name = "otoge-service"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
@@ -365,24 +383,6 @@ requires-dist = [
     { name = "tenacity", specifier = ">=9.1.2" },
     { name = "tzdata", specifier = ">=2025.2" },
     { name = "uvicorn", specifier = ">=0.37.0" },
-]
-
-[[package]]
-name = "maimai-py"
-version = "1.3.7rc2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "aiocache" },
-    { name = "cryptography" },
-    { name = "httpcore" },
-    { name = "httpx" },
-    { name = "lxml" },
-    { name = "maimai-ffi" },
-    { name = "tenacity" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/42/67/c9e24738b07135e17ae8947649b425a31ba00878e472bbe1261001a6906c/maimai_py-1.3.7rc2.tar.gz", hash = "sha256:c1b45a8100834a89786bbe628a9a10bb7cdba405352bc67643a0baeab0641ba1", size = 301529, upload-time = "2025-10-10T14:19:21.968Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b3/5a/a2631264ecdda457f8659d6f563eb99969745cdc49916df2fde3fdcf7591/maimai_py-1.3.7rc2-py3-none-any.whl", hash = "sha256:f5477895603fb223afe3a077fbdae9a52afe1ee02391f0e9c4e34504a1cb3217", size = 314269, upload-time = "2025-10-10T14:19:20.53Z" },
 ]
 
 [[package]]

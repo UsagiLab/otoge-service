@@ -18,8 +18,8 @@ async def require_developer_token(api_key: str | None = Security(api_key_header)
     if api_key is not None:
         if api_key in sessions.enabled_developer_tokens:
             return api_key
-        raise LeporidException.INVALID_CREDENTIALS.with_detail("Invalid developer token")
-    raise LeporidException.INVALID_CREDENTIALS.with_detail("Missing developer token")
+        raise LeporidException.INVALID_CREDENTIALS.msg("开发者令牌无效")
+    raise LeporidException.INVALID_CREDENTIALS.msg("需要提供开发者令牌")
 
 
 dependencies = []
@@ -43,4 +43,4 @@ async def get_developer(developer_token: str):
     async with async_session_ctx() as session:
         developer = (await session.exec(select(Developer).where(Developer.token == developer_token))).first()
         return developer
-    raise LeporidException.INVALID_CREDENTIALS.with_detail("Invalid developer token")
+    raise LeporidException.INVALID_CREDENTIALS.msg("开发者令牌无效")

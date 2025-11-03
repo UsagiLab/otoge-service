@@ -40,7 +40,7 @@ class SuccessResponseMiddleware(BaseHTTPMiddleware):
                 data = json.loads(raw_body.decode(charset))
             except (ValueError, UnicodeDecodeError):
                 return response
-        payload = {"code": 200, "node": "success", "detail": None, "data": data}
+        payload = {"code": 200, "message": "请求成功", "data": data}
         headers = {k: v for k, v in response.headers.items() if k.lower() not in {"content-length", "content-type"}}
         wrapped_response = JSONResponse(payload, status_code=response.status_code, headers=headers)
         wrapped_response.background = response.background
@@ -70,18 +70,18 @@ def init_routes(asgi_app: FastAPI) -> None:
 def init_exception_handlers(asgi_app: FastAPI) -> None:
     @asgi_app.exception_handler(MaimaiPyError)
     async def maimai_py_error_handler(request, exception: MaimaiPyError):
-        return LeporidException.BAD_REQUEST.with_detail_ex("maimai-py-error", repr(exception)).as_response()
+        return LeporidException.BAD_REQUEST.msg(repr(exception)).as_response()
 
     @asgi_app.exception_handler(RequestValidationError)
     async def validation_exception_handler(request, error: RequestValidationError):
         details_list = []
         for err in error.errors():
             details_list.append({"message": str(err)})
-        return LeporidException.VALIDATION_ERROR.with_detail(str(details_list)).as_response()
+        return LeporidException.VALIDATION_ERROR.msg(str(details_list)).as_response()
 
     @asgi_app.exception_handler(Exception)
     async def general_exception_handler(request, exception: Exception):
-        return LeporidException.INTERNAL_SERVER_ERROR.with_detail(repr(exception)).as_response()
+        return LeporidException.INTERNAL_SERVER_ERROR.msg(repr(exception)).as_response()
 
     @asgi_app.exception_handler(LeporidException)
     async def leporid_exception_handler(request, ex: LeporidException):
@@ -110,11 +110,10 @@ def init_openapi(asgi_app: FastAPI) -> None:
             "type": "object",
             "properties": {
                 "code": {"type": "integer", "example": 200},
-                "node": {"type": "string", "example": "success"},
-                "message": {"type": ["string", "null"], "example": None},
+                "message": {"type": "string", "example": "请求成功"},
                 "data": {"nullable": True},
             },
-            "required": ["code", "node", "message", "data"],
+            "required": ["code", "message", "data"],
         }
 
         for path_item in openapi_schema.get("paths", {}).values():

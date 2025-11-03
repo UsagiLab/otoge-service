@@ -23,7 +23,7 @@ class UsagiCardProvider(IScoreProvider, IScoreUpdateProvider):
     def _check_uuid(self, identifier: PlayerIdentifier) -> str:
         assert isinstance(identifier.credentials, str), "Identifier credentials must be a string"
         if not uuid_pattern.match(identifier.credentials):
-            raise LeporidException.INVALID_CREDENTIALS.with_detail("Identifier credentials must be a valid UUID")
+            raise LeporidException.INVALID_CREDENTIALS.msg("无效的 UUID 格式")
         return identifier.credentials
 
     async def get_scores_all(self, identifier: PlayerIdentifier, client: MaimaiClient) -> list[MpyScore]:
