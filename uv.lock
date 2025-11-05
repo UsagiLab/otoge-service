@@ -336,7 +336,7 @@ wheels = [
 
 [[package]]
 name = "maimai-py"
-version = "1.3.7rc5"
+version = "1.3.7rc6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiocache" },
@@ -347,9 +347,9 @@ dependencies = [
     { name = "maimai-ffi" },
     { name = "tenacity" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/63/91/803ed8acceb24568e7a709f3947f9e3ef9cff36d37ca8ad352b9f48294d6/maimai_py-1.3.7rc5.tar.gz", hash = "sha256:fc24b4fd382282672eb48aba047f20408ad6732a0236073e9ef7059e189a42dd", size = 301774, upload-time = "2025-11-04T15:38:04.365Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/99/14/d5bb962a78ef66247c641d4a47cff830344726bb48cb488e6c78e27b8812/maimai_py-1.3.7rc6.tar.gz", hash = "sha256:19bd31a24017a17119bd960a5e80792138758f320566870f7a3415f7c9e226ff", size = 301813, upload-time = "2025-11-05T12:24:52.917Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a2/91/a1ec8df389616a08f79e7ba69c0d4d7c05cb85e3b17af841c6c3e1224326/maimai_py-1.3.7rc5-py3-none-any.whl", hash = "sha256:efa792d4b2c9d7588270ff3d8028e19e17e821ff3a7d93ba72898bc5fa5a2793", size = 314514, upload-time = "2025-11-04T15:38:02.736Z" },
+    { url = "https://files.pythonhosted.org/packages/89/82/b8713e3bbe31ba8760a223214f5b040f22c83422a927d82b0082bfe74f15/maimai_py-1.3.7rc6-py3-none-any.whl", hash = "sha256:01bf35c1c9800bf21baf602cadc23116459875534c0561e28ad5c73da140d1e6", size = 314553, upload-time = "2025-11-05T12:24:51.397Z" },
 ]
 
 [[package]]
@@ -380,7 +380,7 @@ requires-dist = [
     { name = "asyncpg", specifier = ">=0.30.0" },
     { name = "fastapi", specifier = ">=0.118.2" },
     { name = "httpx", specifier = ">=0.28.1" },
-    { name = "maimai-py", specifier = ">=1.3.7rc5" },
+    { name = "maimai-py", specifier = ">=1.3.7rc6" },
     { name = "pydantic-settings", specifier = ">=2.11.0" },
     { name = "redis", specifier = ">=6.4.0" },
     { name = "sqlmodel", specifier = ">=0.0.27" },
