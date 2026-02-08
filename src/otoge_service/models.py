@@ -7,8 +7,21 @@ from maimai_py.models import FCType, FSType, LevelIndex, RateType, SongType
 from sqlmodel import Field, SQLModel
 
 
-class Score(SQLModel, table=True):
-    __tablename__ = "tbl_score"  # type: ignore
+class Developer(SQLModel, table=True):
+    __tablename__ = "tbl_developer"  # type: ignore
+
+    id: int | None = Field(default=None, primary_key=True)
+    name: str = Field(index=True)
+    token: str = Field(unique=True, index=True)
+    description: str | None = Field(default=None)
+    enabled: bool = Field(default=True)
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+# Maimai Assets
+
+class MaimaiScore(SQLModel, table=True):
+    __tablename__ = "tbl_maimai_scores"  # type: ignore
 
     id: int | None = Field(default=None, primary_key=True)
     song_id: int = Field(index=True)
@@ -27,7 +40,7 @@ class Score(SQLModel, table=True):
 
     @staticmethod
     def from_mpy(mpy_score: MpyScore, uuid: str):
-        return Score(
+        return MaimaiScore(
             song_id=mpy_score.id,
             level_index=mpy_score.level_index,
             achievements=Decimal(mpy_score.achievements or 0),
@@ -92,21 +105,6 @@ class Score(SQLModel, table=True):
                 self.updated_at = datetime.utcnow()
         return self
 
-
-class Developer(SQLModel, table=True):
-    __tablename__ = "tbl_developer"  # type: ignore
-
-    id: int | None = Field(default=None, primary_key=True)
-    name: str = Field(index=True)
-    token: str = Field(unique=True, index=True)
-    description: str | None = Field(default=None)
-    enabled: bool = Field(default=True)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-
-
-# Maimai Assets
-
-
 class MaimaiCharacter(SQLModel, table=True):
     __tablename__ = "tbl_maimai_characters"  # type: ignore
 
@@ -114,6 +112,7 @@ class MaimaiCharacter(SQLModel, table=True):
     name: str = Field(description="角色名")
     version: str = Field(description="版本")
 
+# Ongeki Models
 
 class OngekiCard(SQLModel, table=True):
     __tablename__ = "tbl_ongeki_cards"  # type: ignore
